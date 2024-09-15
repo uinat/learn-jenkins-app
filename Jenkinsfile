@@ -21,6 +21,12 @@ pipeline {
             }
         }
         stage('Test') {
+            agent {
+                docker {
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
             steps {
                 sh '''
                     if [ -f build/index.html ]; then
@@ -28,6 +34,8 @@ pipeline {
                     else
                         echo "The file build/index.html does not exist."
                     fi
+
+                    npm test
                 '''
             }
         }
