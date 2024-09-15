@@ -23,7 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh '''
-                    if [[ -f build/index.html ]]; then
+                    if [ -f build/index.html ]; then
                         echo "The file build/index.html exists."
                     else
                         echo "The file build/index.html does not exist."
